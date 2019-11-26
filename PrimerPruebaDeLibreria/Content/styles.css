@@ -1,0 +1,37 @@
+﻿.autor
+{
+    width: 250px;
+    height: 150px;
+    background-color: white;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    padding: 6px 6px;
+    margin: 8px;
+    color: black;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+section {
+    flex-wrap: wrap;
+    color: white;
+    display: flex;
+    background-color: black;
+    justify-content:flex-start;
+    height: 130%;
+}
+
+body
+{
+    background-color: rebeccapurple;
+}
+
+.boton
+{
+    margin: 0;
+}
+
+.texto
+{
+    align-self:flex-end;
+}

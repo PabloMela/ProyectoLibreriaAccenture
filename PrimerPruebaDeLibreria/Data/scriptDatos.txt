@@ -1,0 +1,126 @@
+﻿USE Biblioteca_LeopoldoMarechal
+GO
+
+Insert into Generos
+(Nombre)
+Values
+('Novela'),
+('Cuento'),
+('Fantastico'),
+('Detective'),
+('Antinovela'),
+('Terror'),
+('Horror'),
+('Aventura'),
+('Dispotico'),
+('Ciencia Ficcion'),
+('Drama'),
+('Suspenso'),
+('Policial'),
+('Romance'),
+('Infantil'),
+('Paranormal'),
+('Anime'),
+('Comedia'),
+('Documental'),
+('Thriller')
+
+select * from Generos
+
+Insert into Autores
+(Nombre,Nacionalidad,Ciudad,Lengua,Fec_Nac,ObraMasFamosa)
+values
+('Brandon Sanderson'	,'Estadounidense'	,'Lincoln'				,'Inglesa'		,'1975-12-19'	,'El archivo de las tormentas: La saga'),
+('Julio Cortazar'		,'Argentina'		,'Brujas'				,'Castellana'	,'1914-8-26'	,'Rayuela'),
+('Agatha Christie'		,'Britanica'		,'Devon'				,'Inglesa'		,'1890-9-15'	,'Asesinato en el Orient Express'),
+('Stephen King'			,'Estadounidense'	,'Portland'				,'Inglesa'		,'1947-9-21'	,'El resplandor'),
+('Jorge Borges'			,'Argentina'		,'Buenos Aires'			,'Castellana'	,'1899-8-24'	,'El Aleph'),
+('William Shakespeare'	,'Inglesa'			,'Warwickshire'			,'Inglesa'		,'1564-4-23'	,'Hamlet'),
+('Dante Alighieri'		,'Italiana'			,'Florencia'			,'Italiana'		,'1265-5-29'	,'La divina comedia'),
+('Edgar Allan Poe'		,'Estadounidense'	,'Boston'				,'Inglesa'		,'1809-1-19'	,'El cuervo'),
+('George R. R. Martin'	,'Estadounidense'	,'Nueva Jersey'			,'Inglesa'		,'1948-9-20'	,'Cancion de hielo y fuego'),
+('Miguel de Cervantes'	,'Española'			,'Alcala de Henares'	,'Castellana'	,'1547-9-29'	,'Don Quijote de la Mancha'),
+('J. R. R. Tolkien'		,'Britanica'		,'Bloemfontein'			,'Inglesa'		,'1892-1-3'		,'El señor de los anillos'),
+('Pablo Neruda'			,'Chilena'			,'Parral'				,'Castellana'	,'1904-7-12'	,'Veinte poemas de amor y una canción desesperada'),
+('Lope de Vega'			,'Española'			,'Madrid'				,'Castellana'	,'1562-11-25'	,'Fuenteovejuna'),
+('George Orwell'		,'Britanica'		,'Motihari'				,'Inglesa'		,'1903-6-25'	,'1984'),
+('J. K. Rowling'		,'Britanica'		,'Yate'					,'Inglesa'		,'1965-7-31'	,'Harry Potter: La saga'),
+('Charles Dickens'		,'Britanica'		,'Portsmouth'			,'Inglesa'		,'1812-2-7'		,'Oliver Twist'),
+('Jose Hernandez'		,'Argentina'		,'Villa Ballester'		,'Castellana'	,'1834-11-10'	,'El gaucho Martin Fierro')
+
+select * from Autores
+
+insert into Editoriales
+(Nombre,Pais,Cuit,Fundador,Fundacion)
+Values
+('Windst'		,'Reino Unido'		,'21-17325278-5'	,'Will Sterling','1950-2-12'),
+('Cuelo'		,'Argentina'		,'01-52755128-2'	,'Rodrigo Baez','1959-5-1'),
+('Extern'		,'Estados Unidos'	,'51-75849472-0'	,'John Wicken','1944-7-25'),
+('Wellington'	,'Belgica'			,'20-12345678-5'	,'Kevin Poening','1995-11-4'),
+('Veigold'		,'Inglaterra'		,'66-12345678-7'	,'Joe Hort','2005-5-2'),
+('Jukold'		,'Estados Unidos'	,'91-12345678-4'	,'Lauren Hickenm','1982-1-30'),
+('Nameng'		,'China'			,'22-12345678-8'	,'Jing Haun','2001-9-11'),
+('Kiuro'		,'Japon'			,'05-12345678-6'	,'Keinsu Pang','1989-10-19'),
+('Ispol'		,'Suiza'			,'49-12345678-8'	,'Paul Soning','1956-2-7'),
+('Hanselan'		,'Dinamarca'		,'61-12345678-4'	,'Erik Castlen','1977-9-20'),
+('Furgett'		,'Estados Unidos'	,'49-12345678-9'	,'Ryan Reinald','1999-2-10'),
+('Daikan'		,'Inglaterra'		,'71-12345678-6'	,'Aaron Arnold','2010-6-9'),
+('Crelan'		,'Reino Unido'		,'88-12345678-1'	,'George Oswald','1961-11-29'),
+('Zetas'		,'Argentina'		,'19-12345678-2'	,'Sebastian Zetas','1969-9-22'),
+('Zauron'		,'España'			,'29-12345678-6'	,'Ruben Arbol','1979-2-15'),
+('Klouser'		,'Estados Unidos'	,'50-12345678-1'	,'Nicholas Augus','2012-5-20'),
+('Mugetsu'		,'Corea del Sur'	,'89-12345678-0'	,'Yuki Zukito','1994-7-21'),
+('Broca'		,'España'			,'10-12345678-8'	,'Agustin Brocani','1983-8-1'),
+('Negan'		,'Chile'			,'54-12345678-5'	,'Nicolas Sanchez','2005-2-9'),
+('Planeta'		,'España'			,'23-12345678-1'	,'Jose Manuel Lara','1949-12-31')
+
+select * from Editoriales
+select * from Autores
+select * from Generos
+
+insert into Libros
+(ISBN,Titulo,Descripcion,IdAutor,IdAutor2,IdAutor3,IdEditorial,Genero,SubGenero,SubGenero2,IdGenero,IdSubGenero,IdSubGenero2,FechaPublicacion,Stock,Precio)
+values
+('123-4-65-513833-5','Rayuela','Narra la historia de Horacio Oliveira, un intelectual argentino con pocos recursos económicos, en dos épocas de su vida.',2,null,null,2,'Antinovela',null,null,16,null,null,'1963-6-28',15,1100.50),
+('412-7-51-124151-9','Cinco cerditos','Dieciséis años atrás una mujer fue condenada por asesinar a su esposo, el pintor Amyas Crale, cuando este estaba 
+					 a punto de abandonarla por una mujer más joven. Al morir en prisión deja una carta a su hija de cinco años, Carla, reafirmando su 
+					inocencia. Carla sabe que necesita del mejor detective del mundo para una misión prácticamente imposible: volver al pasado para 
+					encontrar al verdadero asesino, y así limpiar el nombre de su madre inocente.',3,null,null,13,'Detective',null,null,16,null,null,'1942-6-6',4,350),
+('811-1-85-848912-4','Final del juego','La primera edición de Final del juego incluye nueve cuentos: Los venenos, El móvil, La noche boca arriba, Las 
+					Ménades, La puerta condenada, Torito, La banda, Axolotl y Final del juego. La segunda edición, de Editorial Sudamericana (1964) 
+					agregó otros nueve que fueron escritos entre 1945 y 1962: Continuidad de los parques, No se culpe a nadie, El río, El ídolo de 
+					las Cícladas, Una flor amarilla, Sobremesa, Los amigos, Relato con un fondo de agua y Después del almuerzo',2,null,null,2,'Fantastico',null,null,19,null,null,'1956-6-6',11,550),
+('951-1-41-581824-5','Cancion de hielo y fuego','La saga es conocida por tener personajes complejos, cambios de trama violentos y repentinos, e intrigas
+					políticas bien desarrolladas. En un género donde la magia normalmente posee un papel central en el argumento, Canción de hielo y 
+					fuego se caracteriza por un uso limitado y sutil de la misma, empleándola como una fuerza ambigua y, a menudo, oscura. Además, las 
+					novelas no giran alrededor de la lucha entre el Bien y el Mal, sino que los arcos argumentales se basan principalmente en luchas 
+					políticas y guerras civiles; solo hay uno o dos arcos que sugieren la posibilidad de una amenaza externa.',9,null,null,16,'Novela',null,null,20,null,null,'1996-8-6',129,6500),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,),
+('----','','',,,,,'',,,,,,'',,)
+
+select * from Libros

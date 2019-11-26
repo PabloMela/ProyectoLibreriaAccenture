@@ -1,0 +1,467 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Biblioteca_LeopoldoMarechalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Autores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nacionalidad" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Lengua" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Fec_Nac" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ObraMasFamosa" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Editoriales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Pais" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Cuit" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Fundador" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Fundacion" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Generos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Libros">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ISBN" Type="varchar" MaxLength="17" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Autor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Autor2" Type="varchar" MaxLength="50" />
+          <Property Name="Autor3" Type="varchar" MaxLength="50" />
+          <Property Name="IdAutor" Type="int" Nullable="false" />
+          <Property Name="IdAutor2" Type="int" />
+          <Property Name="IdAutor3" Type="int" />
+          <Property Name="Editorial" Type="varchar" MaxLength="50" />
+          <Property Name="IdEditorial" Type="int" />
+          <Property Name="Genero" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="SubGenero" Type="varchar" MaxLength="30" />
+          <Property Name="SubGenero2" Type="varchar" MaxLength="30" />
+          <Property Name="IdGenero" Type="int" Nullable="false" />
+          <Property Name="IdSubGenero" Type="int" />
+          <Property Name="IdSubGenero2" Type="int" />
+          <Property Name="FechaPublicacion" Type="date" Nullable="false" />
+          <Property Name="Stock" Type="int" Nullable="false" />
+          <Property Name="Precio" Type="money" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Libros_IdAutor">
+          <End Role="Autores" Type="Self.Autores" Multiplicity="1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="IdAutor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libros_IdAutor2">
+          <End Role="Autores" Type="Self.Autores" Multiplicity="0..1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="IdAutor2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libros_IdAutor3">
+          <End Role="Autores" Type="Self.Autores" Multiplicity="0..1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="IdAutor3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libros_IdEditorial">
+          <End Role="Editoriales" Type="Self.Editoriales" Multiplicity="0..1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editoriales">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="IdEditorial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libros_IdGenero">
+          <End Role="Generos" Type="Self.Generos" Multiplicity="1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Generos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="IdGenero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libros_IdSubGenero">
+          <End Role="Generos" Type="Self.Generos" Multiplicity="0..1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Generos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="IdSubGenero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libros_IdSubGenero2">
+          <End Role="Generos" Type="Self.Generos" Multiplicity="0..1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Generos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="IdSubGenero2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Biblioteca_LeopoldoMarechalModelStoreContainer">
+          <EntitySet Name="Autores" EntityType="Self.Autores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Editoriales" EntityType="Self.Editoriales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Generos" EntityType="Self.Generos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Libros" EntityType="Self.Libros" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Libros_IdAutor" Association="Self.FK_Libros_IdAutor">
+            <End Role="Autores" EntitySet="Autores" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libros_IdAutor2" Association="Self.FK_Libros_IdAutor2">
+            <End Role="Autores" EntitySet="Autores" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libros_IdAutor3" Association="Self.FK_Libros_IdAutor3">
+            <End Role="Autores" EntitySet="Autores" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libros_IdEditorial" Association="Self.FK_Libros_IdEditorial">
+            <End Role="Editoriales" EntitySet="Editoriales" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libros_IdGenero" Association="Self.FK_Libros_IdGenero">
+            <End Role="Generos" EntitySet="Generos" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libros_IdSubGenero" Association="Self.FK_Libros_IdSubGenero">
+            <End Role="Generos" EntitySet="Generos" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libros_IdSubGenero2" Association="Self.FK_Libros_IdSubGenero2">
+            <End Role="Generos" EntitySet="Generos" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Biblioteca_LeopoldoMarechalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Autores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nacionalidad" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Lengua" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fec_Nac" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ObraMasFamosa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Libros" Relationship="Self.FK_Libros_IdAutor" FromRole="Autores" ToRole="Libros" />
+          <NavigationProperty Name="Libros1" Relationship="Self.FK_Libros_IdAutor2" FromRole="Autores" ToRole="Libros" />
+          <NavigationProperty Name="Libros2" Relationship="Self.FK_Libros_IdAutor3" FromRole="Autores" ToRole="Libros" />
+        </EntityType>
+        <EntityType Name="Editoriales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pais" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cuit" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fundador" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fundacion" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Libros" Relationship="Self.FK_Libros_IdEditorial" FromRole="Editoriales" ToRole="Libros" />
+        </EntityType>
+        <EntityType Name="Generos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Libros" Relationship="Self.FK_Libros_IdGenero" FromRole="Generos" ToRole="Libros" />
+          <NavigationProperty Name="Libros1" Relationship="Self.FK_Libros_IdSubGenero" FromRole="Generos" ToRole="Libros" />
+          <NavigationProperty Name="Libros2" Relationship="Self.FK_Libros_IdSubGenero2" FromRole="Generos" ToRole="Libros" />
+        </EntityType>
+        <EntityType Name="Libros">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ISBN" Type="String" MaxLength="17" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Autor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Autor2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Autor3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdAutor" Type="Int32" Nullable="false" />
+          <Property Name="IdAutor2" Type="Int32" />
+          <Property Name="IdAutor3" Type="Int32" />
+          <Property Name="Editorial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdEditorial" Type="Int32" />
+          <Property Name="Genero" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SubGenero" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SubGenero2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IdGenero" Type="Int32" Nullable="false" />
+          <Property Name="IdSubGenero" Type="Int32" />
+          <Property Name="IdSubGenero2" Type="Int32" />
+          <Property Name="FechaPublicacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Stock" Type="Int32" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Autores" Relationship="Self.FK_Libros_IdAutor" FromRole="Libros" ToRole="Autores" />
+          <NavigationProperty Name="Autores1" Relationship="Self.FK_Libros_IdAutor2" FromRole="Libros" ToRole="Autores" />
+          <NavigationProperty Name="Autores2" Relationship="Self.FK_Libros_IdAutor3" FromRole="Libros" ToRole="Autores" />
+          <NavigationProperty Name="Editoriales" Relationship="Self.FK_Libros_IdEditorial" FromRole="Libros" ToRole="Editoriales" />
+          <NavigationProperty Name="Generos" Relationship="Self.FK_Libros_IdGenero" FromRole="Libros" ToRole="Generos" />
+          <NavigationProperty Name="Generos1" Relationship="Self.FK_Libros_IdSubGenero" FromRole="Libros" ToRole="Generos" />
+          <NavigationProperty Name="Generos2" Relationship="Self.FK_Libros_IdSubGenero2" FromRole="Libros" ToRole="Generos" />
+        </EntityType>
+        <Association Name="FK_Libros_IdAutor">
+          <End Role="Autores" Type="Self.Autores" Multiplicity="1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="IdAutor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libros_IdAutor2">
+          <End Role="Autores" Type="Self.Autores" Multiplicity="0..1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="IdAutor2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libros_IdAutor3">
+          <End Role="Autores" Type="Self.Autores" Multiplicity="0..1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="IdAutor3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libros_IdEditorial">
+          <End Role="Editoriales" Type="Self.Editoriales" Multiplicity="0..1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editoriales">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="IdEditorial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libros_IdGenero">
+          <End Role="Generos" Type="Self.Generos" Multiplicity="1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Generos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="IdGenero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libros_IdSubGenero">
+          <End Role="Generos" Type="Self.Generos" Multiplicity="0..1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Generos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="IdSubGenero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libros_IdSubGenero2">
+          <End Role="Generos" Type="Self.Generos" Multiplicity="0..1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Generos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="IdSubGenero2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Biblioteca_LeopoldoMarechalEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Autores" EntityType="Self.Autores" />
+          <EntitySet Name="Editoriales" EntityType="Self.Editoriales" />
+          <EntitySet Name="Generos" EntityType="Self.Generos" />
+          <EntitySet Name="Libros" EntityType="Self.Libros" />
+          <AssociationSet Name="FK_Libros_IdAutor" Association="Self.FK_Libros_IdAutor">
+            <End Role="Autores" EntitySet="Autores" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libros_IdAutor2" Association="Self.FK_Libros_IdAutor2">
+            <End Role="Autores" EntitySet="Autores" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libros_IdAutor3" Association="Self.FK_Libros_IdAutor3">
+            <End Role="Autores" EntitySet="Autores" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libros_IdEditorial" Association="Self.FK_Libros_IdEditorial">
+            <End Role="Editoriales" EntitySet="Editoriales" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libros_IdGenero" Association="Self.FK_Libros_IdGenero">
+            <End Role="Generos" EntitySet="Generos" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libros_IdSubGenero" Association="Self.FK_Libros_IdSubGenero">
+            <End Role="Generos" EntitySet="Generos" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libros_IdSubGenero2" Association="Self.FK_Libros_IdSubGenero2">
+            <End Role="Generos" EntitySet="Generos" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Biblioteca_LeopoldoMarechalModelStoreContainer" CdmEntityContainer="Biblioteca_LeopoldoMarechalEntities2">
+          <EntitySetMapping Name="Autores">
+            <EntityTypeMapping TypeName="Biblioteca_LeopoldoMarechalModel.Autores">
+              <MappingFragment StoreEntitySet="Autores">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Lengua" ColumnName="Lengua" />
+                <ScalarProperty Name="Fec_Nac" ColumnName="Fec_Nac" />
+                <ScalarProperty Name="ObraMasFamosa" ColumnName="ObraMasFamosa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Editoriales">
+            <EntityTypeMapping TypeName="Biblioteca_LeopoldoMarechalModel.Editoriales">
+              <MappingFragment StoreEntitySet="Editoriales">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="Cuit" ColumnName="Cuit" />
+                <ScalarProperty Name="Fundador" ColumnName="Fundador" />
+                <ScalarProperty Name="Fundacion" ColumnName="Fundacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Generos">
+            <EntityTypeMapping TypeName="Biblioteca_LeopoldoMarechalModel.Generos">
+              <MappingFragment StoreEntitySet="Generos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Libros">
+            <EntityTypeMapping TypeName="Biblioteca_LeopoldoMarechalModel.Libros">
+              <MappingFragment StoreEntitySet="Libros">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Autor" ColumnName="Autor" />
+                <ScalarProperty Name="Autor2" ColumnName="Autor2" />
+                <ScalarProperty Name="Autor3" ColumnName="Autor3" />
+                <ScalarProperty Name="IdAutor" ColumnName="IdAutor" />
+                <ScalarProperty Name="IdAutor2" ColumnName="IdAutor2" />
+                <ScalarProperty Name="IdAutor3" ColumnName="IdAutor3" />
+                <ScalarProperty Name="Editorial" ColumnName="Editorial" />
+                <ScalarProperty Name="IdEditorial" ColumnName="IdEditorial" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="SubGenero" ColumnName="SubGenero" />
+                <ScalarProperty Name="SubGenero2" ColumnName="SubGenero2" />
+                <ScalarProperty Name="IdGenero" ColumnName="IdGenero" />
+                <ScalarProperty Name="IdSubGenero" ColumnName="IdSubGenero" />
+                <ScalarProperty Name="IdSubGenero2" ColumnName="IdSubGenero2" />
+                <ScalarProperty Name="FechaPublicacion" ColumnName="FechaPublicacion" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

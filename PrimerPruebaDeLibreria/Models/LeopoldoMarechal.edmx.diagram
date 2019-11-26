@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c2f2bb79c1ed4a2bbcbe57ce3870587b" Name="Diagram1">
+        <EntityTypeShape EntityType="Biblioteca_LeopoldoMarechalModel.Autores" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Biblioteca_LeopoldoMarechalModel.Editoriales" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Biblioteca_LeopoldoMarechalModel.Generos" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Biblioteca_LeopoldoMarechalModel.Libros" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <AssociationConnector Association="Biblioteca_LeopoldoMarechalModel.FK_Libros_IdAutor" ManuallyRouted="false" />
+        <AssociationConnector Association="Biblioteca_LeopoldoMarechalModel.FK_Libros_IdAutor2" ManuallyRouted="false" />
+        <AssociationConnector Association="Biblioteca_LeopoldoMarechalModel.FK_Libros_IdAutor3" ManuallyRouted="false" />
+        <AssociationConnector Association="Biblioteca_LeopoldoMarechalModel.FK_Libros_IdEditorial" ManuallyRouted="false" />
+        <AssociationConnector Association="Biblioteca_LeopoldoMarechalModel.FK_Libros_IdGenero" ManuallyRouted="false" />
+        <AssociationConnector Association="Biblioteca_LeopoldoMarechalModel.FK_Libros_IdSubGenero" ManuallyRouted="false" />
+        <AssociationConnector Association="Biblioteca_LeopoldoMarechalModel.FK_Libros_IdSubGenero2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
